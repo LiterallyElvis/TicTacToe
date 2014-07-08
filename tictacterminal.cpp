@@ -21,10 +21,10 @@ void victoryDeclaration( char, char, char &, char cell[][3] );
 int main()
 {
 	const int ROWS = 3,
-			  COLS = 3;
+	          COLS = 3;
 
 	int turns = 0,
-		first = 0;
+	    first = 0;
 
 	char cell[ROWS][COLS] =
 	{
@@ -34,8 +34,8 @@ int main()
 	};
 
 	char playerChar,
-		 compChar,
-		 victorChar;
+	     compChar,
+	     victorChar;
 
 	bool victory = 0;
 
@@ -44,10 +44,12 @@ int main()
 	firstSelector( first );
 	charSelection( playerChar, compChar );
 	clearBoard( cell );
+	
 	if ( first == 1 )
 	{
 		compCellSelector( turns, cell, compChar );
 	}
+	
 	playerCellSelector( turns, cell, playerChar );
 
 	while ( !victory )
@@ -57,15 +59,18 @@ int main()
 			playerCellSelector( turns, cell, playerChar );
 			compCellSelector( turns, cell, compChar );
 		}
+		
 		else
 		{
 			compCellSelector( turns, cell, compChar );
 			playerCellSelector( turns, cell, playerChar );
 		}
+		
 		if( victory == 1 )
 		{
 			break;
 		}
+		
 		gameVictory( cell, victorChar, victory );
 	}
 
@@ -78,11 +83,11 @@ void printBoard( char cell[][3] )
 {
 	cout << endl;
 	cout << " " << cell[0][0] << " | " << cell[0][1] << " | " << cell[0][2]
-		 << " " << endl	 << "---|---|---" << endl
-		 << " " << cell[1][0] << " | " << cell[1][1] << " | " << cell[1][2]
-		 << " " << endl	 << "---|---|---" << endl
-		 << " " << cell[2][0] << " | " << cell[2][1] << " | " << cell[2][2]
-		 << " " << endl << endl;
+	     << " " << endl	  << "---|---|---" << endl
+	     << " " << cell[1][0] << " | " << cell[1][1] << " | " << cell[1][2]
+	     << " " << endl	  << "---|---|---" << endl
+	     << " " << cell[2][0] << " | " << cell[2][1] << " | " << cell[2][2]
+             << " " << endl << endl;
 }
 
 void charSelection( char &playerChar, char &compChar )
@@ -119,11 +124,13 @@ int firstSelector( int &first )
 	sleep(2);
 	int i;
 	i = rand();
+	
 	if( i % 2 == 1 )
 	{
 		cout << "Player gets to go first!" << endl << endl;
 		first = 0;
 	}
+	
 	else
 	{
 		cout << "Computer gets to go first!" << endl << endl;
@@ -160,6 +167,7 @@ void compCellSelector( int &turns, char cell[][3], char compChar )
 			done = 1;
 			printBoard( cell );
 		}
+		
 		else
 		{
 			i = 4;
@@ -171,7 +179,7 @@ void compCellSelector( int &turns, char cell[][3], char compChar )
 void playerCellSelector( int &turns, char cell[][3], char playerChar )
 {
 	int x,
-		y;
+	    y;
 
 	bool done = 0;
 	while ( !done )
@@ -197,6 +205,7 @@ void playerCellSelector( int &turns, char cell[][3], char playerChar )
 
 		cout << "Choose a row: ";
 		cin >> y;
+		
 		switch( y )
 		{
 		case 1:
@@ -220,6 +229,7 @@ void playerCellSelector( int &turns, char cell[][3], char playerChar )
 			done = 1;
 			printBoard( cell );
 		}
+		
 		else
 		{
 			cout << "You cannot choose that space.";
@@ -236,65 +246,73 @@ bool gameVictory( char cell[][3], char &victorChar, bool &victory )
 		victorChar = cell[0][0];
 		victory = 1;
 	}
+	
 	else if( cell[0][0] != ' '
-		   && cell[0][0] == cell[1][0]
-		   && cell[1][0] == cell[2][0] )
+	      && cell[0][0] == cell[1][0]
+	      && cell[1][0] == cell[2][0] )
 	{
 		victorChar = cell[0][0];
 		victory = 1;
 	}
+	
 	else if( cell[0][0] != ' '
-		  &&  cell[0][0] == cell[1][1]
-		  && cell[1][1] == cell[2][2] )
+	      && cell[0][0] == cell[1][1]
+	      && cell[1][1] == cell[2][2] )
 	{
 		victorChar = cell[0][0];
 		victory = 1;
 	}
+	
 	else if( cell[0][2] != ' '
-		   && cell[0][2] == cell[1][2]
-		   && cell[1][2] == cell[2][2] )
+	      && cell[0][2] == cell[1][2]
+	      && cell[1][2] == cell[2][2] )
 	{
 		victorChar = cell[0][2];
 		victory = 1;
 	}
+	
 	else if( cell[2][0] != ' '
-		   && cell[2][0] == cell[2][1]
-	   	   && cell[2][1] == cell[2][2] )
+	      && cell[2][0] == cell[2][1]
+	      && cell[2][1] == cell[2][2] )
 	{
 		victorChar = cell[2][0];
 		victory = 1;
 	}
+	
 	else if( cell[2][0] != ' '
-			&& cell[2][0] == cell[1][1]
-		    && cell[1][1] == cell[0][2] )
+	      && cell[2][0] == cell[1][1]
+	      && cell[1][1] == cell[0][2] )
 	{
 		victorChar = cell[2][0];
 		victory = 1;
 	}
+	
 	else if( cell[1][0] != ' '
-		  && cell[1][0] == cell[1][1]
-		  && cell[1][1] == cell[1][2] )
+	      && cell[1][0] == cell[1][1]
+	      && cell[1][1] == cell[1][2] )
 	{
 		victorChar = cell[1][0];
 		victory = 1;
 	}
+	
 	else if( cell[0][1] != ' '
-			&& cell[0][1] == cell[1][1]
-			&& cell[1][1] == cell[2][1] )
+	      && cell[0][1] == cell[1][1]
+	      && cell[1][1] == cell[2][1] )
 	{
 		victorChar = cell[0][1];
 		victory = 1;
 	}
+	
 	return victory;
 }
 
-void victoryDeclaration( char playerChar, char compChar,
-								char &victorChar, char cell[][3] )
+void victoryDeclaration( char playerChar, char compChar, char &victorChar, char cell[][3] )
 {
 	if( victorChar == playerChar )
 	{
 		cout << "Player has won the game!";
 	}
+	
 	else
 	{
 		cout << "Computer has won the game!";
